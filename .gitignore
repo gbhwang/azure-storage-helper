@@ -1,0 +1,14 @@
+# Virtual Environment
+.venv/
+
+# Python
+__pycache__/
+
+# Build
+dist/
+
+# Notebooks
+notebooks/
+
+# Mac
+.DS_Store
