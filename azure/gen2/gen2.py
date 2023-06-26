@@ -500,6 +500,11 @@ class BlobClient:
             if not exist_ok:
                 raise err
 
+    def delete(self, **kwargs) -> None:
+        """Blob을 삭제합니다.
+        """
+        self.client.delete_file(**kwargs)
+
     def __init(self) -> None:
         """인스턴스 초기화"""
         container_name, *others = self._sub_path.parts

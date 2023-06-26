@@ -26,7 +26,7 @@ def load_yaml(blob: BlobClient) -> dict:
     return config
 
 
-def load_csv(blob: BlobClient) -> DataFrame:
+def load_csv(blob: BlobClient, **kwargs) -> DataFrame:
     """CSV 파일을 읽어 DataFrame으로 반환합니다.
 
     Args:
@@ -36,7 +36,7 @@ def load_csv(blob: BlobClient) -> DataFrame:
         DataFrame: Data.
     """
     stream = blob.download()
-    return pd.read_csv(stream, index_col=0, low_memory=False)
+    return pd.read_csv(stream, low_memory=False, **kwargs)
 
 
 def load_jobib(blob: BlobClient) -> Any:
@@ -59,7 +59,9 @@ def load_jobib(blob: BlobClient) -> Any:
     return obj
 
 
-def upload_to_csv(blob: BlobClient, data: DataFrame, encode: str = "utf-8", **kwargs):
+def upload_to_csv(
+    blob: BlobClient, data: DataFrame, encode: str = "utf-8", **kwargs
+):
     """DataFrame을 CSV 파일로 저장합니다.
 
     Args:
