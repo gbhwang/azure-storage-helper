@@ -59,17 +59,19 @@ def load_jobib(blob: BlobClient) -> Any:
     return obj
 
 
-def upload_to_csv(blob: BlobClient, data: DataFrame):
+def upload_to_csv(blob: BlobClient, data: DataFrame, encode: str = "utf-8", **kwargs):
     """DataFrame을 CSV 파일로 저장합니다.
 
     Args:
         blob (BlobClient): BlobClient.
         data (DataFrame): Data.
+        encode (str): Encoding option.
+        **kwargs : pandas.DataFrame.to_csv(**kwargs) e.g. index, header, ...
     """
     blob.container.create(exist_ok=True)
     blob.create(exist_ok=True)
 
-    stream = BytesIO(data.to_csv().encode("utf-8"))
+    stream = BytesIO(data.to_csv(**kwargs).encode(encode))
     blob.upload(stream)
 
 
