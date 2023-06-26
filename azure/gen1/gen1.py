@@ -284,6 +284,16 @@ class BlobClient:
         """
         return self.client.exists()
 
+    def delete(self, delete_snapshots: str = "include") -> None:
+        """현재 blob을 삭제합니다.
+
+        Args:
+            delete_snapshots (str, optional): 스냅샷 삭제 여부.\n
+            스냅샷만 삭제하고 blob은 남기고 싶다면 `delete_snapshots="only"`\n
+            Defaults to "include".\n
+        """
+        self.client.delete_blob(delete_snapshots=delete_snapshots)
+
     def __init(self) -> None:
         """인스턴스 초기화"""
         container_name, *others = self._sub_path.parts
