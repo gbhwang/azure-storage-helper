@@ -171,6 +171,11 @@ class ContainerClient:
             if not exist_ok:
                 raise err
 
+    def delete(self, **kwargs) -> None:
+        """Container를 삭제합니다.
+        """
+        self.client.delete_file_system(**kwargs)
+
     def glob(
         self,
         path: str = None,
@@ -330,6 +335,11 @@ class DirectoryClient:
         except ResourceExistsError as err:
             if not exist_ok:
                 raise err
+
+    def delete(self, **kwargs) -> None:
+        """Directory를 삭제합니다.
+        """
+        self.client.delete_directory(**kwargs)
 
     def glob(
         self, name_start_with: str = None, recursive: bool = True

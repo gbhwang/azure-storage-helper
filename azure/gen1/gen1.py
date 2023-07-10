@@ -157,6 +157,11 @@ class ContainerClient:
             if not exist_ok:
                 raise err
 
+    def delete(self, **kwargs) -> None:
+        """현재 container를 삭제합니다.
+        """
+        self.client.delete_container(**kwargs)
+
     def glob(self, path: str = None, name_starts_with: str = None) -> list:
         """컨테이너에 존재하는 Blob을 검색합니다.
 
