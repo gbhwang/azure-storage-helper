@@ -77,19 +77,20 @@ def upload_to_csv(
     blob.upload(stream)
 
 
-def upload_file(blob: BlobClient, local_path: str):
+def upload_file(blob: BlobClient, local_path: str, overwrite: bool = True):
     """파일을 저장합니다.
 
     Args:
         blob (BlobClient): BlobClient.
         local_path (str): 로컬 파일 경로.
+        overwrite (bool, optional): 덮어쓰기 옵션. Defaults to True.
     """
     blob.container.create(exist_ok=True)
     blob.create(exist_ok=True)
 
     with open(local_path, "rb") as file:
         stream = BytesIO(file.read())
-        blob.upload(stream)
+        blob.upload(stream, overwrite=overwrite)
 
 
 def download_file(
