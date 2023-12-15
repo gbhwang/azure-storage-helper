@@ -6,16 +6,16 @@ from typing import Union
 
 from azure.core.exceptions import ResourceExistsError, ResourceNotFoundError
 from azure.storage.filedatalake import (
-    DataLakeServiceClient,
-    FileSystemClient,
     DataLakeDirectoryClient,
     DataLakeFileClient,
+    DataLakeServiceClient,
+    FileSystemClient,
 )
 
 
 class StorageClient:
     def __init__(self, account_name: str, account_key: str) -> None:
-        """torage 사용을 도와주는 DataLakeServiceClient의 wrapper class.
+        """Storage 사용을 도와주는 DataLakeServiceClient의 wrapper class.
 
         Args:
             account_name (str): Name of StorageClient Account.
