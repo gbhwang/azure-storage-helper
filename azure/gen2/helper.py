@@ -1,8 +1,8 @@
 import os
 import tempfile
 from io import BytesIO
-from typing import Any
 from pathlib import Path
+from typing import Any
 
 import joblib
 import pandas as pd
@@ -74,6 +74,21 @@ def upload_to_csv(
     blob.create(exist_ok=True)
 
     stream = BytesIO(data.to_csv(**kwargs).encode(encode))
+    blob.upload(stream)
+
+
+def upload_to_parquet(blob: BlobClient, data: DataFrame, **kwargs):
+    """DataFrame을 Parquet 파일로 저장합니다.
+
+    Args:
+        blob (BlobClient): BlobClient.
+        data (DataFrame): Data.
+        **kwargs : pandas.DataFrame.to_parquet(**kwargs) e.g. index, ..
+    """
+    blob.container.create(exist_ok=True)
+    blob.create(exist_ok=True)
+
+    stream = BytesIO(data.to_parquet(**kwargs))
     blob.upload(stream)
 
 

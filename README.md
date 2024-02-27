@@ -254,5 +254,6 @@ if not blob.exists():
 - `load_csv(blob: BlobClient, **kwargs) -> DataFrame`
 - `load_jobib(blob: BlobClient) -> Any`
 - `upload_to_csv(blob: BlobClient, data: DataFrame, encode: str = "utf-8", **kwargs)`
+- `upload_to_parquet(blob: BlobClient, data: DataFrame, **kwargs)`
 - `upload_file(blob: BlobClient, local_path: str, overwrite: bool = True)`
 - `download_file(blob: BlobClient, local_path: str, file_name: str = None) -> str`
