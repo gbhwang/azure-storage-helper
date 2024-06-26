@@ -59,6 +59,19 @@ def load_jobib(blob: BlobClient) -> Any:
     return obj
 
 
+def load_stream(blob: BlobClient, **kwargs) -> BytesIO:
+    """파일을 읽어 스트림을 반환합니다.
+
+    Args:
+        blob (BlobClient): BlobClient.
+
+    Returns:
+        BytesIO: Stream.
+    """
+    stream = blob.download()
+    return stream
+
+
 def upload_to_csv(
     blob: BlobClient, data: DataFrame, encode: str = "utf-8", **kwargs
 ):
