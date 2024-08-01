@@ -39,7 +39,7 @@ Azure의 storage 서비스를 사용하기 위한 Python SDK를 좀 더 쉽게 �
 azure-storage-helper는 pip 명령어를 통해 PyPI으로부터 설치할 수 있습니다.
 
 ```cmd
-pip install pandas
+pip install azure-storage-helper
 ```
 
 ### Package overview
